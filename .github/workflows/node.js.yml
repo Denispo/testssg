@@ -24,8 +24,9 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+    - name: REF ${{GITHUB_REF_NAME}}
     
-    - run: bash echo "window.setTimeout(console.log.bind('console','%c %s %c %s ','border-radius:2px 0 0 2px; background-color:#4c566a; color:#eceff4;','build info','border-radius:0 2px 2px 0; background-color:#d8dee9; color:#4c566a; font-weight:bold;','${{ github.ref_name }}-$(commitTime)-$(GITHUB_REF_NAME)'));"
+   # - run: bash echo "window.setTimeout(console.log.bind('console','%c %s %c %s ','border-radius:2px 0 0 2px; background-color:#4c566a; color:#eceff4;','build info','border-radius:0 2px 2px 0; background-color:#d8dee9; color:#4c566a; font-weight:bold;','${{ github.ref_name }}-$(commitTime)-$(GITHUB_REF_NAME)'));"
     
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
