@@ -26,7 +26,7 @@ jobs:
     steps:
 
     - name: Git
-      run: echo git --version
+      run: echo `git --version`
 # https://stackoverflow.com/questions/59810838/how-to-get-the-short-sha-for-the-github-workflow
     - name: Set outputs
       id: vars
