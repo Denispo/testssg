@@ -24,7 +24,7 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+    
     - name: Git
       run: echo `git log -1 --format="%at" | xargs -I{} date -d @{} +%Y%m%d%H%M%S`
 # https://stackoverflow.com/questions/59810838/how-to-get-the-short-sha-for-the-github-workflow
