@@ -17,7 +17,7 @@ function getFiles(dir, files = []) {
             getFiles(name, files);
         } else {
             // If it is a file, push the full path to the files array
-            files.push({name:name,hash:createHash('md5').update(readFileSync(name)).digest('hex')});
+            files.push({dirName:dir, fileName:file,fileHash:createHash('md5').update(readFileSync(name)).digest('hex')});
         }
     }
     return files;
