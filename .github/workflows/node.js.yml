@@ -11,7 +11,7 @@ on:
 
 env:
   # Setting an environment variable with the value of a configuration variable
-  commitTime: "123456"
+  commitTime: _GIT_COMMIT_DATE=$(git log -1 --format=%cd --date=format:%Y%m%dh%H%M%S)
 
 jobs:
   build:
@@ -25,6 +25,9 @@ jobs:
 
     steps:
 
+    - name: Git
+      run: git --version >> echo
+# https://stackoverflow.com/questions/59810838/how-to-get-the-short-sha-for-the-github-workflow
     - name: Set outputs
       id: vars
       run: echo "sha_short=`echo ${{github.sha}} | cut -c1-8`" >> $GITHUB_OUTPUT
