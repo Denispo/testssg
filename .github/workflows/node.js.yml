@@ -25,10 +25,17 @@ jobs:
 
     steps:
 
+    - name: Set outputs
+      id: vars
+      run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      
+    - name: Check outputs
+      run: echo ${{ steps.vars.outputs.sha_short }}
+
     - name: Add SHORT_SHA env property with commit short sha
       run: echo "SHORT_SHA=`echo ${{GITHUB_SHA}} | cut -c1-8`" >> $GITHUB_ENV
     
-    - run: echo "window.setTimeout(console.log.bind('console','%c %s %c %s ','border-radius:2px 0 0 2px; background-color:#4c566a; color:#eceff4;','build info','border-radius:0 2px 2px 0; background-color:#d8dee9; color:#4c566a; font-weight:bold;','${{ github.ref_name }}-${commitTime}-${{github.SHORT_SHA}})'));"
+  #  - run: echo "window.setTimeout(console.log.bind('console','%c %s %c %s ','border-radius:2px 0 0 2px; background-color:#4c566a; color:#eceff4;','build info','border-radius:0 2px 2px 0; background-color:#d8dee9; color:#4c566a; font-weight:bold;','${{ github.ref_name }}-${commitTime}-${{github.SHORT_SHA}})'));"
     
 #    - uses: actions/checkout@v3
 #    - name: Use Node.js ${{ matrix.node-version }}
