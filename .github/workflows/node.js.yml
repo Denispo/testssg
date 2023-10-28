@@ -25,6 +25,8 @@ jobs:
 
     steps:
     
+    - uses: actions/checkout@v3
+    
     - name: Git
       run: git log -1 --format="%at" | xargs -I{} date -d @{} +%Y%m%d%H%M%S
 # https://stackoverflow.com/questions/59810838/how-to-get-the-short-sha-for-the-github-workflow
@@ -40,7 +42,6 @@ jobs:
     
   #  - run: echo "window.setTimeout(console.log.bind('console','%c %s %c %s ','border-radius:2px 0 0 2px; background-color:#4c566a; color:#eceff4;','build info','border-radius:0 2px 2px 0; background-color:#d8dee9; color:#4c566a; font-weight:bold;','${{ github.ref_name }}-${commitTime}-${{github.SHORT_SHA}})'));"
     
-#    - uses: actions/checkout@v3
 #    - name: Use Node.js ${{ matrix.node-version }}
 #      uses: actions/setup-node@v3
 #      with:
