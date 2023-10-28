@@ -11,7 +11,7 @@ on:
 
 env:
   # Setting an environment variable with the value of a configuration variable
-  commitTime: ${{ 123456 }}
+  commitTime: "123456"
 
 jobs:
   build:
