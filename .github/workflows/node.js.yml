@@ -26,7 +26,7 @@ jobs:
     steps:
 
     - name: Git
-      run: echo `git --version`
+      run: echo `git log -1 --format="%at" | xargs -I{} date -d @{} +%Y%m%d%H%M%S`
 # https://stackoverflow.com/questions/59810838/how-to-get-the-short-sha-for-the-github-workflow
     - name: Set outputs
       id: vars
