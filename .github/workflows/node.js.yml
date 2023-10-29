@@ -1,0 +1,59 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  # Setting an environment variable with the value of a configuration variable
+  commitTime: _GIT_COMMIT_DATE=$(git log -1 --format=%cd --date=format:%Y%m%dh%H%M%S)
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    
+    - uses: actions/checkout@v3
+    
+    - name: Git
+      run: git log -1 --format="%at" | xargs -I{} date -d @{} +%Y%m%d%H%M%S
+# https://stackoverflow.com/questions/59810838/how-to-get-the-short-sha-for-the-github-workflow
+    - name: Set outputs
+      id: vars
+      run: echo "sha_short=`echo ${{github.sha}} | cut -c1-8`" >> $GITHUB_OUTPUT
+      
+    - name: Check outputs
+      run: echo ${{ steps.vars.outputs.sha_short }}
+
+ #   - name: Add SHORT_SHA env property with commit short sha
+ #     run: echo "SHORT_SHA=`echo ${{GITHUB_SHA}} | cut -c1-8`" >> $GITHUB_ENV
+    
+  #  - run: echo "window.setTimeout(console.log.bind('console','%c %s %c %s ','border-radius:2px 0 0 2px; background-color:#4c566a; color:#eceff4;','build info','border-radius:0 2px 2px 0; background-color:#d8dee9; color:#4c566a; font-weight:bold;','${{ github.ref_name }}-${commitTime}-${{github.SHORT_SHA}})'));"
+    
+#    - name: Use Node.js ${{ matrix.node-version }}
+#      uses: actions/setup-node@v3
+#      with:
+#        node-version: ${{ matrix.node-version }}
+#        cache: 'npm'
+#    - run: npm ci
+#    - run: npm run buildssg
+   # - run: npm test
+ #   - name: Archive production artifacts
+ #     uses: actions/upload-artifact@v3
+ #     with:
+ #       name: dist-without-markdown
+ #       path: |
+ #         dist
+ #         !dist/**/*.md
