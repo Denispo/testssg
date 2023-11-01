@@ -42,18 +42,18 @@ jobs:
     
   #  - run: echo "window.setTimeout(console.log.bind('console','%c %s %c %s ','border-radius:2px 0 0 2px; background-color:#4c566a; color:#eceff4;','build info','border-radius:0 2px 2px 0; background-color:#d8dee9; color:#4c566a; font-weight:bold;','${{ github.ref_name }}-${commitTime}-${{github.SHORT_SHA}})'));"
     
-#    - name: Use Node.js ${{ matrix.node-version }}
-#      uses: actions/setup-node@v3
-#      with:
-#        node-version: ${{ matrix.node-version }}
-#        cache: 'npm'
-#    - run: npm ci
-#    - run: npm run buildssg
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run buildssg
    # - run: npm test
- #   - name: Archive production artifacts
- #     uses: actions/upload-artifact@v3
- #     with:
- #       name: dist-without-markdown
- #       path: |
- #         dist
- #         !dist/**/*.md
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist-without-markdown
+        path: |
+          dist
+          !dist/**/*.md
