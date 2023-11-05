@@ -2,14 +2,17 @@
 
 
 import {ref} from "vue";
+import {useStoreCounter} from "@/stores/counter";
 
 const bu = ref<boolean>(true)
+
+const store = useStoreCounter();
 
 </script>
 
 <template>
   <div class="about p-6" :class="[bu ? 'bg-red-500' : 'bg-blue-400' ]">
-    <h1 @click="bu = !bu">This is an about page</h1>
+    <h1 @click="bu = !bu">This is an about page {{store.count}} + {{store.doubleCount}}</h1>
   </div>
 </template>
 

@@ -11,7 +11,7 @@ const ssgOption:ViteSSGOptions = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  build:{outDir:'./dist',},
+  build:{outDir:'./dist',manifest:true},
 
   plugins: [
     vue(),

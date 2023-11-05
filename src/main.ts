@@ -3,6 +3,7 @@ import App from './App.vue'
 import {ViteSSG} from "vite-ssg";
 import HomeView from "@/views/HomeView.vue";
 import AboutView from "@/views/AboutView.vue";
+import {createPinia} from "pinia";
 
 // `export const createApp` is required instead of the original `createApp(App).mount('#app')`
 export const createApp = ViteSSG(
@@ -16,6 +17,8 @@ export const createApp = ViteSSG(
     // function to have custom setups
     ({ app, router, routes, isClient, initialState }) => {
         // install plugins etc.
+        const pinia = createPinia();
+        app.use(pinia);
     },
 )
 
